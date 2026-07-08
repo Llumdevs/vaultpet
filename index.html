@@ -1,0 +1,184 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VaultPet — Su universo, en su comedero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=League+Gothic&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+  <script>
+    /* Aplica el tema guardado antes de pintar (evita parpadeo). Por defecto: claro. */
+    (function () {
+      try {
+        if (localStorage.getItem("vaultpet-theme") === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Header mínimo: logo + CTA + toggle de tema -->
+  <header class="site-header">
+    <a class="site-header__logo" href="#" aria-label="VaultPet — inicio">VaultPet</a>
+    <div class="site-header__actions">
+      <a class="site-header__cta" href="#acceso">Solicitar acceso</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" title="Modo oscuro">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO: LA PUERTA ============ -->
+  <!-- Signature element: puerta de cámara acorazada en 3D. Al hacer scroll,
+       la rueda gira y la puerta se abre (pinned ScrollTrigger), revelando
+       la sala de cajas de depósito debajo. -->
+  <section id="hero" class="hero">
+    <div class="hero__stage">
+      <p class="hero-eyebrow">Edición limitada &middot; numerada &middot; pintada a mano</p>
+      <h1 class="wordmark" aria-label="VaultPet">
+        <span class="wordmark__base" aria-hidden="true">VAULT<br class="wm-break">PET</span>
+        <span class="wordmark__reveal" aria-hidden="true">VAULT<br class="wm-break">PET</span>
+      </h1>
+      <p class="hero-sub">El comedero no lleva el personaje encima. El comedero ES el personaje.</p>
+      <p class="scroll-hint">Baja para abrir la cámara ↓</p>
+      <div class="hero__veil" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ============ SALA DE CAJAS: LOS DROPS ============ -->
+  <section id="drops" class="drops">
+    <span class="y2k-spark" aria-hidden="true" style="top:20%;right:7%;width:36px;--r:12deg;"></span>
+    <span class="y2k-spark" aria-hidden="true" style="top:52%;left:2.5%;width:22px;--r:-18deg;animation-delay:1.2s;"></span>
+    <span class="y2k-spark" aria-hidden="true" style="bottom:12%;right:9%;width:28px;--r:6deg;animation-delay:2.3s;"></span>
+    <header class="section-head">
+      <span class="plate-number">CAJA 01–03</span>
+      <h2>Drops activos</h2>
+      <p>Cada universo es una tirada numerada. Cuando se agota, no vuelve.</p>
+    </header>
+
+    <div class="deposit-grid">
+
+      <article class="deposit-box" data-universe="fallout" style="--glow:#c4d82e;">
+        <div class="box-viewport" data-model-slot="fallout">
+          <!-- TODO(Claude Code, Fase 2): montar aquí el visor Three.js del
+               comedero real (GLB) para este universo. De momento, placeholder. -->
+          <div class="box-placeholder">FO</div>
+        </div>
+        <div class="box-plate">
+          <span class="plate-label">Fallout</span>
+          <span class="plate-edition">047&nbsp;/&nbsp;300</span>
+        </div>
+      </article>
+
+      <article class="deposit-box" data-universe="pokemon" style="--glow:#ffd23f;">
+        <div class="box-viewport" data-model-slot="pokemon">
+          <div class="box-placeholder">PK</div>
+        </div>
+        <div class="box-plate">
+          <span class="plate-label">Pokémon</span>
+          <span class="plate-edition">agotado</span>
+        </div>
+      </article>
+
+      <article class="deposit-box" data-universe="onepiece" style="--glow:#3d7bff;">
+        <div class="box-viewport" data-model-slot="onepiece">
+          <div class="box-placeholder">OP</div>
+        </div>
+        <div class="box-plate">
+          <span class="plate-label">One Piece</span>
+          <span class="plate-edition">próximamente</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ MANIFIESTO ============ -->
+  <section id="manifiesto" class="manifiesto">
+    <span class="plate-number">El objeto</span>
+    <h2 class="manifiesto-title">No llevas el personaje. Lo tienes.</h2>
+    <p>Aquí no se estampa un logo encima. El comedero se esculpe, se pinta a mano y se sella en resina hasta que el objeto y el personaje son la misma cosa. Cuando tu mascota come, come dentro de su universo.</p>
+    <div class="specs">
+      <div class="spec">
+        <h3>Resina a mano</h3>
+        <p>Fotoluminiscente, humo o craquelado según la pieza. Ninguna sale igual.</p>
+      </div>
+      <div class="spec">
+        <h3>Edición numerada</h3>
+        <p>Tiradas cerradas. Cuando se agota el número, no se vuelve a fundir.</p>
+      </div>
+      <div class="spec">
+        <h3>Certificado incluido</h3>
+        <p>Cada unidad sale de la cámara con su número y su registro de autenticidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CÓMO FUNCIONA ============ -->
+  <section id="proceso" class="proceso">
+    <header class="section-head">
+      <span class="plate-number">Protocolo</span>
+      <h2>Consigue tu VaultPet</h2>
+    </header>
+    <ol class="proceso-list">
+      <li>
+        <span class="proceso-index">01</span>
+        <div>
+          <h3>Elige el universo</h3>
+          <p>Cada drop es una edición cerrada. Lo que no se numera esta tirada, no se vuelve a fabricar.</p>
+        </div>
+      </li>
+      <li>
+        <span class="proceso-index">02</span>
+        <div>
+          <h3>Personaliza el lore</h3>
+          <p>Nombre de tu mascota grabado en la pieza, integrado en la narrativa del universo elegido.</p>
+        </div>
+      </li>
+      <li>
+        <span class="proceso-index">03</span>
+        <div>
+          <h3>Pintado y resina a mano</h3>
+          <p>Relieve esculpido, pintura manual, efectos de resina: fotoluminiscente, humo o craquelado según la pieza.</p>
+        </div>
+      </li>
+      <li>
+        <span class="proceso-index">04</span>
+        <div>
+          <h3>Certificado y número</h3>
+          <p>Cada unidad sale de la cámara con su número de edición. Es la pieza y el registro.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ ACCESO ANTICIPADO ============ -->
+  <section id="acceso" class="acceso">
+    <span class="y2k-spark" aria-hidden="true" style="top:24%;left:6%;width:26px;--r:-10deg;"></span>
+    <span class="y2k-spark" aria-hidden="true" style="bottom:20%;right:7%;width:20px;--r:16deg;animation-delay:1.6s;"></span>
+    <div class="acceso-panel">
+      <span class="plate-number">SOLICITUD DE ACCESO</span>
+      <h2>Entérate antes de que se agote</h2>
+      <p>Avisamos por email cuando abre un drop nuevo. Sin spam, solo aperturas de cámara.</p>
+      <form class="acceso-form" id="waitlist-form">
+        <input type="email" placeholder="tu@email.com" required aria-label="Email" />
+        <button type="submit">Solicitar acceso</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>VaultPet</span>
+    <span>Fandom &middot; Resina &middot; Edición limitada</span>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+  <!-- Fase 2: visores 3D del producto en cada caja de depósito -->
+  <script type="module" src="/src/deposit-viewers.js"></script>
+</body>
+</html>
