@@ -732,6 +732,18 @@ section { padding: 8rem 8vw; max-width: var(--container); margin: 0 auto; }
 
 .acceso-form button:hover { filter: brightness(1.12); transform: translateY(-1px); }
 
+.acceso-status {
+  min-height: 1.2em;
+  margin: 1rem auto 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-dim);
+}
+
+.acceso-status[data-state="ok"] { color: var(--holo-3); }
+.acceso-status[data-state="error"] { color: #ff6b6b; }
+
 /* ============ FOOTER ============ */
 .site-footer {
   display: flex;

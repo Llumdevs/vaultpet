@@ -33,10 +33,10 @@
     </div>
   </header>
 
-  <!-- ============ HERO: LA PUERTA ============ -->
-  <!-- Signature element: puerta de cámara acorazada en 3D. Al hacer scroll,
-       la rueda gira y la puerta se abre (pinned ScrollTrigger), revelando
-       la sala de cajas de depósito debajo. -->
+  <!-- ============ HERO ============ -->
+  <!-- Elemento de firma: wordmark gigante (type-reveal). El holo sigue al
+       cursor y, al hacer scroll, "buceas" dentro de VaultPet (pin + zoom +
+       fundido) hasta la sala de cajas. Lógica en src/main.js. -->
   <section id="hero" class="hero">
     <div class="hero__stage">
       <p class="hero-eyebrow">Edición limitada &middot; numerada &middot; pintada a mano</p>
@@ -65,8 +65,6 @@
 
       <article class="deposit-box" data-universe="fallout" style="--glow:#c4d82e;">
         <div class="box-viewport" data-model-slot="fallout">
-          <!-- TODO(Claude Code, Fase 2): montar aquí el visor Three.js del
-               comedero real (GLB) para este universo. De momento, placeholder. -->
           <div class="box-placeholder">FO</div>
         </div>
         <div class="box-plate">
@@ -165,10 +163,11 @@
       <span class="plate-number">SOLICITUD DE ACCESO</span>
       <h2>Entérate antes de que se agote</h2>
       <p>Avisamos por email cuando abre un drop nuevo. Sin spam, solo aperturas de cámara.</p>
-      <form class="acceso-form" id="waitlist-form">
-        <input type="email" placeholder="tu@email.com" required aria-label="Email" />
+      <form class="acceso-form" id="waitlist-form" novalidate>
+        <input type="email" name="email" placeholder="tu@email.com" required aria-label="Email" />
         <button type="submit">Solicitar acceso</button>
       </form>
+      <p class="acceso-status" id="waitlist-status" role="status" aria-live="polite"></p>
     </div>
   </section>
 
@@ -178,7 +177,5 @@
   </footer>
 
   <script type="module" src="/src/main.js"></script>
-  <!-- Fase 2: visores 3D del producto en cada caja de depósito -->
-  <script type="module" src="/src/deposit-viewers.js"></script>
 </body>
 </html>

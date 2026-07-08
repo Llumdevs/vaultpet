@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { drops } from "./data/drops.js";
 
 /* ============================================================
    VAULTPET — Fase 2: visor 3D del producto por caja de depósito
@@ -11,14 +12,6 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
    la mecánica del visor. Para poner el comedero real de un universo,
    basta cambiar la ruta `model` en VIEWERS — el resto no se toca.
    ============================================================ */
-
-// Config por universo. Solo lo que está aquí monta visor;
-// el resto de cajas conserva su .box-placeholder.
-const VIEWERS = {
-  fallout: { model: "/models/Trident.glb" },
-  pokemon: { model: "/models/Cleaver.glb" },
-  onepiece: { model: "/models/Talwar.glb" },
-};
 
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
@@ -201,8 +194,8 @@ function createBoxViewer(el, cfg) {
   animate();
 }
 
-// --- Arranque: monta un visor por cada slot presente en VIEWERS ---
+// --- Arranque: monta un visor por cada caja con datos de drop ---
 document.querySelectorAll(".box-viewport[data-model-slot]").forEach((el) => {
-  const cfg = VIEWERS[el.dataset.modelSlot];
+  const cfg = drops[el.dataset.modelSlot];
   if (cfg) createBoxViewer(el, cfg);
 });

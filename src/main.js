@@ -182,3 +182,48 @@ if (!reduceMotion) {
     });
   });
 }
+
+/* ============================================================
+   Lazy-load del visor 3D: Three/GLTF pesan, así que se cargan
+   en su propio chunk solo cuando la sala de cajas se acerca al
+   viewport, en vez de en el arranque (bundle inicial más ligero).
+   ============================================================ */
+const dropsSection = document.getElementById("drops");
+if (dropsSection) {
+  const io = new IntersectionObserver(
+    (entries, obs) => {
+      if (entries[0].isIntersecting) {
+        obs.disconnect();
+        import("./deposit-viewers.js");
+      }
+    },
+    { rootMargin: "600px 0px" }
+  );
+  io.observe(dropsSection);
+}
+
+/* ============================================================
+   Formulario de acceso: sin backend todavía, pero con handler
+   mínimo (valida y confirma) para que no parezca roto.
+   ============================================================ */
+const waitlistForm = document.getElementById("waitlist-form");
+if (waitlistForm) {
+  const emailInput = waitlistForm.querySelector('input[type="email"]');
+  const status = document.getElementById("waitlist-status");
+  const setStatus = (msg, state) => {
+    if (!status) return;
+    status.textContent = msg;
+    status.dataset.state = state;
+  };
+  waitlistForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!emailInput.value.trim() || !emailInput.checkValidity()) {
+      setStatus("Revisa el email e inténtalo de nuevo.", "error");
+      emailInput.focus();
+      return;
+    }
+    // Pendiente backend: aquí irá el envío del email a la lista real.
+    setStatus("Estás en la lista. Te avisamos al abrir el próximo drop.", "ok");
+    waitlistForm.reset();
+  });
+}
