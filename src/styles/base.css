@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--void);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Atmósfera del interior (auroras holo) en una CAPA FIJA propia. Así el
+   navegador la compone en GPU y no repinta el fondo en cada frame de scroll
+   (lo que hacía `background-attachment: fixed` y rompía la fluidez). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  transform: translateZ(0);
+  background:
+    radial-gradient(
+      42% 55% at 0% 60%,
+      color-mix(in srgb, var(--holo-2) 15%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      42% 55% at 100% 72%,
+      color-mix(in srgb, var(--holo-3) 13%, transparent),
+      transparent 70%
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+a,
+button {
+  font-family: inherit;
+}
